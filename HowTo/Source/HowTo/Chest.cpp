@@ -79,7 +79,8 @@ void AChest::OnInteract_Implementation()
 		}
 		else
 		{
-			PlayerCharacter->OnShowQuestInfo(Quest);
+			PlayerCharacter->OnShowQuestCompleted(Quest.PostCompletionMessage);
+
 		}
 	}
 }

@@ -152,7 +152,7 @@ void ACatCharacter::OnInteract_Implementation()
 		}
 		else
 		{
-			PlayerCharacter->OnShowQuestInfo(Quest);
+			PlayerCharacter->OnShowQuestCompleted(Quest.PostCompletionMessage);
 		}
 	}	
 }

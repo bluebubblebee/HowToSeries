@@ -53,15 +53,18 @@ public:
 	UMainSaveGame* CurrentSaveGame;
 
 public: 
-	
+	UFUNCTION(BlueprintCallable, Category = "Save Game")
 	bool IsNewGame();
 
+	UFUNCTION(BlueprintCallable, Category = "Save Game")
 	bool CreateNewSaveGame();
 
 public:
 
+	UFUNCTION(BlueprintCallable, Category = "Save Game")
 	bool LoadGame();
 
+	UFUNCTION(BlueprintCallable, Category = "Save Game")
 	bool SaveGame();
 	
 };

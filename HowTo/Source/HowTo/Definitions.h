@@ -28,6 +28,9 @@ struct FQuest
 	FText CompleteMessage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Quest")
+	FText PostCompletionMessage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Quest")
 	FName ItemID;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Quest")

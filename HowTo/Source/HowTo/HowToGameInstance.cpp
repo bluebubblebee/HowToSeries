@@ -53,14 +53,13 @@ bool UHowToGameInstance::CreateNewSaveGame()
 		CurrentSaveGame->CreateSlot(UNIQUE_SAVE_SLOT);
 	}
 
-	return UGameplayStatics::SaveGameToSlot(CurrentSaveGame, UNIQUE_SAVE_SLOT, 0);	
+	return UGameplayStatics::SaveGameToSlot(CurrentSaveGame, UNIQUE_SAVE_SLOT, 0);
 }
 
 
 
 bool UHowToGameInstance::SaveGame()
-{
-	
+{	
 	if (CurrentSaveGame != nullptr)
 	{
 		return UGameplayStatics::SaveGameToSlot(CurrentSaveGame, UNIQUE_SAVE_SLOT, 0);
