@@ -2,7 +2,7 @@
 
 
 #include "ItemInteractive.h"
-#include "HowToCharacter.h"
+#include "HowTo/HowToCharacter.h"
 
 
 void AItemInteractive::BeginPlay()

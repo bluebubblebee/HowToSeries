@@ -2,7 +2,7 @@
 
 
 #include "PushInteractive.h"
-#include "HowToCharacter.h"
+#include "HowTo/HowToCharacter.h"
 
 
 void APushInteractive::OnInteract_Implementation()

@@ -12,6 +12,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "HowToGameInstance.h"
 #include "Kismet/GameplayStatics.h"
+#include "HowTo/QuestSystem/QuestManager.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AHowToCharacter
@@ -236,26 +237,24 @@ void AHowToCharacter::UpdateAndShowQuestList()
 	// Prepare list of quest, to show on the UI
 	AHowToGameMode* GameMode = Cast<AHowToGameMode>(GetWorld()->GetAuthGameMode());
 
-	if (GameMode != nullptr)
+	if ((GameMode == nullptr) || (GameMode->GetQuestManager() == nullptr)) return;	
+	TArray<FText> QuestTextList;
+	for (int i = 0; i < QuestList.Num(); i++)
 	{
-		TArray<FText> QuestTextList;
-		for (int i = 0; i < QuestList.Num(); i++)
+		if (!QuestList[i].IsCompleted)
 		{
-			if (!QuestList[i].IsCompleted)
-			{
-				bool Success = false;
-				// Find the quest on the game mode
-				FQuest Quest = GameMode->FindQuest(QuestList[i].QuestID, Success);
+			bool Success = false;
+			// Find the quest on the game mode
+			FQuest Quest = GameMode->GetQuestManager()->FindQuest(QuestList[i].QuestID, Success);
 
-				if (Success)
-				{
-					QuestTextList.Add(Quest.SortDescription);
-				}
+			if (Success)
+			{
+				QuestTextList.Add(Quest.SortDescription);
 			}
 		}
-
-		OnShowUpdatedQuestList(QuestTextList);
 	}
+
+	OnShowUpdatedQuestList(QuestTextList);
 }
 
 

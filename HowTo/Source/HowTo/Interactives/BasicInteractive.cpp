@@ -3,7 +3,7 @@
 
 #include "BasicInteractive.h"
 #include "Components/BoxComponent.h"
-#include "HowToCharacter.h"
+#include "HowTo/HowToCharacter.h"
 
 
 ABasicInteractive::ABasicInteractive()

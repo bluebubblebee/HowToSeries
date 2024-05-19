@@ -1,8 +1,9 @@
 
 
 #include "Chest.h"
-#include "HowToGameMode.h"
-#include "HowToCharacter.h"
+#include "HowTo/HowToGameMode.h"
+#include "HowTo/HowToCharacter.h"
+#include "HowTo/QuestSystem/QuestManager.h"
 
 
 AChest::AChest()
@@ -10,18 +11,13 @@ AChest::AChest()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-
-
-
 void AChest::OnPlayerBeginOverlap()
 {
 	if (PlayerCharacter != nullptr)
 	{
 		PlayerCharacter->OnShowUI(InteractiveName);
 	}
-
 }
-
 
 void AChest::OnPlayerEndOverlap()
 {
@@ -29,21 +25,19 @@ void AChest::OnPlayerEndOverlap()
 	{
 		PlayerCharacter->OnHideUI();
 	}
-
 }
-
 
 void AChest::OnInteract_Implementation()
 {
 	// Retrieve info quest from game mode
 	AHowToGameMode* GameMode = Cast<AHowToGameMode>(GetWorld()->GetAuthGameMode());
-	if (GameMode == nullptr) return;
+	if ((GameMode == nullptr) || (GameMode->GetQuestManager() == nullptr)) return;
 
 	if (!QuestActivated) return;
 
 	bool Success = false;
 	// Find the quest on the game mode
-	FQuest Quest = GameMode->FindQuest(QuestID, Success);
+	FQuest Quest = GameMode->GetQuestManager()->FindQuest(QuestID, Success);
 
 	if (!Success) return;
 

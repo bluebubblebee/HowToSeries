@@ -13,12 +13,15 @@ AHowToGameMode::AHowToGameMode()
 void AHowToGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (QuestManagerObject)
+	{
+		// Create an instance of UClueObjectManager using ClueObjectManagerTest
+		QuestManager = NewObject<UQuestManager>(this, *QuestManagerObject);
+	}
 }
 
-
-
-
-FItem AHowToGameMode::FindItem_Implementation(FName ItemID, bool& Success)
+FItem AHowToGameMode::FindItem(FName ItemID, bool& Success)
 {
 	Success = false;
 
@@ -36,25 +39,4 @@ FItem AHowToGameMode::FindItem_Implementation(FName ItemID, bool& Success)
 	}
 
 	return Item;
-}
-
-
-FQuest AHowToGameMode::FindQuest_Implementation(FName QuestID, bool& Success)
-{
-	Success = false;
-
-	FQuest Quest;
-	if (QuestDatabase == nullptr) { return Quest; }
-
-	for (int i = 0; i < QuestDatabase->QuestData.Num(); i++)
-	{
-		if (QuestDatabase->QuestData[i].QuestID == QuestID)
-		{
-			Success = true;
-			return QuestDatabase->QuestData[i];
-			
-		}
-	}
-
-	return Quest;
 }

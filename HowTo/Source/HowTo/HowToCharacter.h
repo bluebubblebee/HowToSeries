@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Interactable.h"
+#include "HowTo/Interfaces/Interactable.h"
 #include "Definitions.h"
 #include "HowToCharacter.generated.h"
 

@@ -3,20 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Interactable.h"
+#include "HowTo/Interfaces/Interactable.h"
 #include "BasicInteractive.h"
-#include "Checkpoint.generated.h"
+#include "PushInteractive.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class HOWTO_API ACheckpoint : public ABasicInteractive, public IInteractable
+class HOWTO_API APushInteractive : public ABasicInteractive, public IInteractable
 {
 	GENERATED_BODY()
 
 
-	//////////// INTERFACE IInteractable //////////////////
+//////////// INTERFACE IInteractable //////////////////
 public:
 
 	FName GetName() override;
@@ -28,7 +28,10 @@ public:
 	//Actual implementation of the Interact
 	void OnInteract_Implementation();
 
+	//void Interact() override;
+
 	FName GetQuestID() override;
 
-	//////////// INTERFACE IInteractable //////////////////	
+//////////// INTERFACE IInteractable //////////////////
+	
 };

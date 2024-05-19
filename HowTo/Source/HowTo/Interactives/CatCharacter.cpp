@@ -3,23 +3,22 @@
 
 #include "CatCharacter.h"
 #include "Components/BoxComponent.h"
-#include "ComplexAnimInstance.h"
-#include "HowToGameMode.h"
-#include "HowToCharacter.h"
+#include "HowTo/ComplexAnimInstance.h"
+#include "HowTo/HowToGameMode.h"
+#include "HowTo/QuestSystem/QuestManager.h"
+#include "HowTo/HowToCharacter.h"
 
 
 ACatCharacter::ACatCharacter()
 {
-Trigger = CreateDefaultSubobject<UBoxComponent>(TEXT("Trigger"));
-Trigger->SetupAttachment(RootComponent);
+	Trigger = CreateDefaultSubobject<UBoxComponent>(TEXT("Trigger"));
+	Trigger->SetupAttachment(RootComponent);
 
-Trigger->OnComponentBeginOverlap.AddUniqueDynamic(this, &ACatCharacter::BeginOverlap);
-Trigger->OnComponentEndOverlap.AddUniqueDynamic(this, &ACatCharacter::EndOverlap);
+	Trigger->OnComponentBeginOverlap.AddUniqueDynamic(this, &ACatCharacter::BeginOverlap);
+	Trigger->OnComponentEndOverlap.AddUniqueDynamic(this, &ACatCharacter::EndOverlap);
 
-PrimaryActorTick.bCanEverTick = true;
-
+	PrimaryActorTick.bCanEverTick = true;
 }
-
 
 void ACatCharacter::BeginPlay()
 {
@@ -34,7 +33,6 @@ void ACatCharacter::BeginPlay()
 
 	SetActorTickEnabled(true);
 }
-
 
 
 void ACatCharacter::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
@@ -109,13 +107,13 @@ void ACatCharacter::OnInteract_Implementation()
 {
 	// Retrieve info quest from game mode
 	AHowToGameMode* GameMode = Cast<AHowToGameMode>(GetWorld()->GetAuthGameMode());
-	if (GameMode == nullptr) return;
+	if ((GameMode == nullptr) || (GameMode->GetQuestManager() == nullptr)) return;
 
 	if (!QuestActivated) return;
 	
 	bool Success = false;
 	// Find the quest on the game mode
-	FQuest Quest = GameMode->FindQuest(QuestID, Success);
+	FQuest Quest = GameMode->GetQuestManager()->FindQuest(QuestID, Success);
 
 	if (!Success) return;
 

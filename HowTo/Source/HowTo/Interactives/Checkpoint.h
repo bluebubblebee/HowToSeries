@@ -3,25 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Interactable.h"
+#include "HowTo/Interfaces/Interactable.h"
 #include "BasicInteractive.h"
-#include "Chest.generated.h"
+#include "Checkpoint.generated.h"
 
+/**
+ * 
+ */
 UCLASS()
-class HOWTO_API AChest :  public ABasicInteractive, public IInteractable
+class HOWTO_API ACheckpoint : public ABasicInteractive, public IInteractable
 {
 	GENERATED_BODY()
-	
-public:	
 
-	AChest();
-
-
-protected:
-
-	void OnPlayerBeginOverlap() override;
-
-	void OnPlayerEndOverlap() override;
 
 	//////////// INTERFACE IInteractable //////////////////
 public:
@@ -32,12 +25,10 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interact")
 	void OnInteract();
 
-	//Actual implementation of the Interact event
+	//Actual implementation of the Interact
 	void OnInteract_Implementation();
 
 	FName GetQuestID() override;
 
-	//////////// INTERFACE IInteractable //////////////////
-
-
+	//////////// INTERFACE IInteractable //////////////////	
 };

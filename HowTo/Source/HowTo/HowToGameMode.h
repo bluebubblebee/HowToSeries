@@ -19,34 +19,28 @@ protected:
 
 	virtual void BeginPlay() override;
 
-
 protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Quest System")
-	class UQuestData* QuestDatabase;
+	TSubclassOf<class UQuestManager> QuestManagerObject;
 
+	TObjectPtr<class UQuestManager> QuestManager;
 
 public:
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Quest System")
-	FQuest FindQuest(FName QuestID, bool& Success);
-
-	FQuest FindQuest_Implementation(FName QuestID, bool& Success);
+	FORCEINLINE UQuestManager* GetQuestManager(){ return QuestManager; }
 
 
 ///////////////////////// Inventory ////////////////////////////////
 protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item System")
-	class UItemData* ItemDatabase;
+	TObjectPtr<class UItemData> ItemDatabase;
 
 public:
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Item System")
+	UFUNCTION(BlueprintCallable,Category = "Item System")
 	FItem FindItem(FName ItemID, bool& Success);
-
-	FItem FindItem_Implementation(FName ItemID, bool& Success);
-
 
 	///////////////////////// Inventory ////////////////////////////////
 

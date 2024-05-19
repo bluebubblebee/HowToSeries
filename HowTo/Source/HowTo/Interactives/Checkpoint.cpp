@@ -1,6 +1,6 @@
 
 #include "Checkpoint.h"
-#include "HowToCharacter.h"
+#include "HowTo/HowToCharacter.h"
 
 
 void ACheckpoint::OnInteract_Implementation()
