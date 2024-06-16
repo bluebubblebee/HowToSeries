@@ -8,7 +8,8 @@ public class HowToTarget : TargetRules
 	public HowToTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.Add("HowTo");
+        DefaultBuildSettings = BuildSettingsVersion.V4;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_3;
+        ExtraModuleNames.Add("HowTo");
 	}
 }
